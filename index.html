@@ -63,10 +63,11 @@
       }
     }
 
+    /* Troca rápida (0.5s) entre slides */
     .slider {
       display: flex;
       width: 500%;
-      transition: all 10s ease-in;
+      transition: all 0.5s ease-in-out;
       transform: translateX(0);
     }
 
@@ -159,6 +160,8 @@
       color: #B5B4B4;
       margin-bottom: 1.5rem;
     }
+
+    /* Botão sem transição lenta */
     .slider .box .details button {
       display: inline-block;
       margin-top: 1rem;
@@ -169,8 +172,7 @@
       outline: none;
       border: none;
       cursor: pointer;
-      transition: all 5s ease;
-      /* Removido background-color fixo, pois cada box terá a sua cor */
+      transition: all 0.3s ease; /* efeito de hover rápido */
     }
     .slider .box .details button:hover {
       opacity: 0.8;
@@ -194,7 +196,7 @@
     .slider .box4 button { background-color: #FF4E00; }
     .slider .box5 button { background-color: #8000FF; }
 
-    /* Imagens das ilustrações */
+    /* Ilustração (cartão) */
     .slider .box1 .illustration .inner {
       background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Eu%20lInkdin.jpeg');
       background-size: cover;
@@ -211,7 +213,6 @@
       background-position: center;
     }
 
-    /* Ilustração (cartão) */
     .slider .illustration {
       grid-column: 2/-1;
       grid-row: 1/-1;
@@ -264,7 +265,7 @@
       width: 4rem;
       cursor: pointer;
       opacity: 0.2;
-      transition: all 8s ease;
+      transition: all 0.3s ease; /* transição curta */
     }
     @media only screen and (max-width: 650px) {
       .prev, .next {
@@ -285,7 +286,7 @@
       transform: translateY(-50%);
     }
 
-    /* A trilha (1,2,3,4,5) agora NÃO é absoluta e está FORA da .container */
+    /* A trilha (1,2,3,4,5) */
     .trail {
       margin: 2rem auto;
       display: flex;
@@ -294,12 +295,13 @@
       text-align: center;
       font-size: 1.5rem;
     }
+    /* Transição curta para hover */
     .trail div {
       padding: 1.5rem 2rem;
       border-top: 3px solid #fff;
       cursor: pointer;
       opacity: 0.3;
-      transition: all 6s ease;
+      transition: opacity 0.3s ease;
     }
     .trail div:hover {
       opacity: 0.6;
@@ -406,7 +408,7 @@
     </div>
   </div>
 
-  <!-- A trilha (1,2,3,4,5) foi movida para FORA do .container -->
+  <!-- A trilha (1,2,3,4,5) foi movida para FORA da .container -->
   <div class="trail">
     <div class="box1 active">1</div>
     <div class="box2">2</div>
@@ -421,7 +423,7 @@
 
     let value = 0;
     let trailValue = 0;
-    let interval = 4000;
+    let interval = 4000; // 4 segundos
     let start = setInterval(() => slide("increase"), interval);
 
     const slide = (condition) => {
@@ -444,6 +446,7 @@
     };
 
     const move = (S, T) => {
+      // Transição de 0.5s no CSS
       slider.style.transform = `translateX(-${S}%)`;
       trail[T].classList.add("active");
     };
