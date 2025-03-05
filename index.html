@@ -1,606 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <!-- Meta viewport para responsividade em dispositivos móveis -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Cartão Corporativo Gustavo Germano Furian - Consultor de TI</title>
-    <style>
-        *,:before,:after {
-            margin: 0;
-            padding: 0;
-            box-sizing: inherit;
-        }
-
-        html {
-            box-sizing: border-box;
-            font-family: "Roboto", sans-serif;
-            font-size: 62.5%; /* 1rem = 10px se o navegador base for 16px */
-        }
-
-        /* Ajuste para telas até 800px */
-        @media only screen and (max-width: 800px) {
-            html {
-                font-size: 57%; /* Ajuste conforme necessário */
-            }
-        }
-
-        body {
-            background-color: #180148;
-            color: #fff;
-            padding: 8rem;
-        }
-
-        @media only screen and (max-width: 1000px) {
-            body {
-                padding: 0;
-            }
-        }
-
-        .container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 5rem;
-        }
-
-        @media only screen and (max-width: 1000px) {
-            .container {
-                border-radius: 0;
-            }
-        }
-
-        /* Removemos a altura fixa para permitir que o conteúdo cresça */
-        .slider {
-            display: flex;
-            width: 500%;
-            /* height: 55rem;  <-- Removido */
-            transition: all 0.25s ease-in;
-            transform: translateX(0);
-        }
-
-        /* Se quiser manter altura fixa em telas grandes, você pode recolocar 
-           dentro de @media (min-width: 1001px) { .slider { height: 55rem; } } */
-
-        /* @media only screen and (max-width: 1000px) {
-            .slider {
-                height: 100vh; <-- Removido também
-            }
-        } */
-
-        .slider .box {
-            /* Agora a altura do box será automática, conforme o conteúdo */
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        @media only screen and (max-width: 650px) {
-            .slider .box {
-                grid-template-columns: 1fr;
-                grid-template-rows: repeat(2, 1fr);
-            }
-        }
-
-        .slider .box .bg {
-            padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.2);
-            width: 55%;
-            transform: skewX(7deg);
-            position: absolute;
-            height: 100%;
-            left: -10%;
-            padding-left: 20rem;
-            transform-origin: 0 100%;
-        }
-
-        @media only screen and (max-width: 800px) {
-            .slider .box .bg {
-                width: 65%;
-            }
-        }
-
-        @media only screen and (max-width: 650px) {
-            /* Para telas pequenas, removemos o skew e ajustamos os espaçamentos */
-            .slider .box .bg {
-                width: 100%;
-                left: 0;
-                bottom: 0;
-                height: 54%;
-                transform: none;
-                padding-left: 0;
-            }
-        }
-
-        .slider .box .bg::before {
-            content: "";
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: inherit;
-            pointer-events: none;
-            transform: skewX(10deg);
-        }
-
-        @media only screen and (max-width: 650px) {
-            .slider .box .bg::before {
-                width: 120%;
-                bottom: 0;
-                transform: none;
-            }
-        }
-
-        .slider .box .details {
-            padding: 5rem;
-            padding-left: 10rem;
-            z-index: 100;
-            grid-column: 1/span 1;
-            grid-row: 1/-1;
-        }
-
-        @media only screen and (max-width: 650px) {
-            /* Para telas pequenas, removemos a translação e centralizamos melhor */
-            .slider .box .details {
-                grid-row: 2/span 1;
-                grid-column: 1/-1;
-                text-align: center;
-                padding: 2rem;
-                transform: none;
-            }
-        }
-
-        .slider .box .details h1 {
-            font-size: 3.5rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Removemos inline-block e margin-right grande */
-        .slider .box .details p {
-            font-size: 1.3rem;
-            color: #B5B4B4;
-            margin-bottom: 1.5rem; /* espaçamento entre parágrafos */
-        }
-
-        .slider .box .details button {
-            display: inline-block; /* garante que o botão fique em bloco */
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            padding: 1rem 3rem;
-            color: #fff;
-            border-radius: 2rem;
-            outline: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background-color: #FF0077; /* Você pode customizar cor */
-        }
-
-        .slider .box .details button:hover {
-            opacity: 0.8;
-        }
-
-        .slider .box .details button:focus {
-            outline: none;
-            border: none;
-        }
-
-        /* Ajustes de cor para cada box */
-        .slider .box1 {
-            background-color: #500033;
-        }
-        .slider .box2 {
-            background-color: #000050;
-        }
-        .slider .box3 {
-            background-color: #00501D;
-        }
-        .slider .box4 {
-            background-color: #554D00;
-        }
-        .slider .box5 {
-            background-color: #300050;
-        }
-
-        /* Imagens de fundo */
-        .slider .box1 .illustration .inner {
-            background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Eu%20lInkdin.jpeg'); 
-            background-size: cover; 
-            background-position: center; 
-            background-repeat: no-repeat; 
-            transform: rotate(0deg); 
-        }
-        .slider .box2 .illustration .inner {
-            background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg'); 
-            background-size: cover;
-            background-position: center;
-        }
-        .slider .box3 .illustration .inner {
-            background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg'); 
-            background-size: cover;
-            background-position: center;
-        }
-        .slider .box4 .illustration .inner {
-            background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg'); 
-            background-size: cover;
-            background-position: center;
-        }
-        .slider .box5 .illustration .inner {
-            background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg'); 
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Botões específicos (caso queira cores diferentes) */
-        .slider .box1 button { background-color: #FF0077; }
-        .slider .box2 button { background-color: #0033FF; }
-        .slider .box3 button { background-color: #00FF44; }
-        .slider .box4 button { background-color: #FF4E00; }
-        .slider .box5 button { background-color: #8000FF; }
-
-        .slider .illustration {
-            grid-column: 2/-1;
-            grid-row: 1/-1;
-            justify-self: center;
-        }
-
-        @media only screen and (max-width: 650px) {
-            .slider .illustration {
-                grid-row: 1/span 1;
-                grid-column: 1/-1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
-
-        .slider .illustration div {
-            height: 25rem;
-            width: 18rem;
-            border-radius: 3rem;
-            background-color: #FF0077;
-            position: relative;
-            transform: skewX(-10deg);
-        }
-
-        @media only screen and (max-width: 800px) {
-            .slider .illustration div {
-                height: 20rem;
-                width: 15rem;
-            }
-        }
-
-        .slider .illustration div::after, 
-        .slider .illustration div::before {
-            content: "";
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            border-radius: 3rem;
-            top: 0;
-            left: 0;
-        }
-
-        .slider .illustration div::after {
-            transform: translate(4rem, -1rem);
-        }
-        .slider .illustration div::before {
-            transform: translate(2rem, -2rem);
-        }
-
-        .prev, .next, .trail {
-            z-index: 10000;
-            position: absolute;
-        }
-
-        .prev, .next {
-            width: 4rem;
-            cursor: pointer;
-            opacity: 0.2;
-            transition: all 0.3s ease;
-        }
-
-        @media only screen and (max-width: 650px) {
-            .prev, .next {
-                display: none;
-            }
-        }
-
-        .prev:hover, .next:hover {
-            opacity: 1;
-        }
-
-        .prev {
-            top: 50%;
-            left: 2%;
-            transform: translateY(-50%);
-        }
-        .next {
-            top: 50%;
-            right: 2%;
-            transform: translateY(-50%);
-        }
-
-        .trail {
-            bottom: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-
-        @media only screen and (max-width: 650px) {
-            .trail {
-                width: 90%;
-                bottom: 13%;
-            }
-        }
-
-        .trail div {
-            padding: 2rem;
-            border-top: 3px solid #fff;
-            cursor: pointer;
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
-
-        .trail div:hover {
-            opacity: 0.6;
-        }
-
-        @media only screen and (max-width: 650px) {
-            .trail div {
-                padding: 1rem;
-            }
-        }
-
-        .active {
-            opacity: 1 !important;
-        }
-
-        /* Ajuste adicional para telas menores que 480px (opcional) */
-        @media only screen and (max-width: 480px) {
-            html {
-                font-size: 65%;
-            }
-            body {
-                padding: 1rem;
-            }
-            .slider .box .details h1 {
-                font-size: 4rem;
-            }
-            .slider .box .details p {
-                font-size: 1.6rem;
-                line-height: 1.4;
-            }
-            .slider .box .details button {
-                font-size: 1.4rem;
-                padding: 1.2rem 2.5rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <!-- Meta viewport para responsividade em dispositivos móveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cartão Corporativo Gustavo Germano Furian - Consultor de TI</title>
+  <style>
+    /* RESET e configurações base */
+    *,
+    :before,
+    :after {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+    }
+    html {
+      box-sizing: border-box;
+      font-family: "Roboto", sans-serif;
+      font-size: 62.5%; /* 1rem = 10px se base for 16px */
+    }
+    @media only screen and (max-width: 800px) {
+      html {
+        font-size: 57%;
+      }
+    }
+    body {
+      background-color: #180148;
+      color: #fff;
+      padding: 8rem;
+    }
+    @media only screen and (max-width: 1000px) {
+      body {
+        padding: 0;
+      }
+    }
+    .container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 5rem;
+    }
+    @media only screen and (max-width: 1000px) {
+      .container {
+        border-radius: 0;
+      }
+    }
+    /* Em desktop, altura fixa; em mobile, altura auto com rolagem vertical */
+    @media (min-width: 1001px) {
+      .slider {
+        height: 55rem;
+      }
+    }
+    @media only screen and (max-width: 650px) {
+      .slider {
+        height: auto;
+      }
+      .container {
+        overflow-y: auto;
+      }
+    }
+    .slider {
+      display: flex;
+      width: 500%;
+      transition: all 0.25s ease-in;
+      transform: translateX(0);
+    }
+    .slider .box {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    @media only screen and (max-width: 650px) {
+      .slider .box {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+    }
+    .slider .box .bg {
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.2);
+      width: 55%;
+      transform: skewX(7deg);
+      position: absolute;
+      height: 100%;
+      left: -10%;
+      padding-left: 20rem;
+      transform-origin: 0 100%;
+    }
+    @media only screen and (max-width: 800px) {
+      .slider .box .bg {
+        width: 65%;
+      }
+    }
+    @media only screen and (max-width: 650px) {
+      /* Em mobile, removemos o skew e ajustamos os espaçamentos */
+      .slider .box .bg {
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        height: 54%;
+        transform: none;
+        padding-left: 0;
+      }
+    }
+    .slider .box .bg::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: inherit;
+      pointer-events: none;
+      transform: skewX(10deg);
+    }
+    @media only screen and (max-width: 650px) {
+      .slider .box .bg::before {
+        width: 120%;
+        bottom: 0;
+        transform: none;
+      }
+    }
+    .slider .box .details {
+      padding: 5rem;
+      padding-left: 10rem;
+      z-index: 100;
+      grid-column: 1/span 1;
+      grid-row: 1/-1;
+    }
+    @media only screen and (max-width: 650px) {
+      .slider .box .details {
+        grid-row: 2;
+        grid-column: 1;
+        text-align: center;
+        padding: 2rem;
+        transform: none;
+      }
+    }
+    .slider .box .details h1 {
+      font-size: 3.5rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    /* Parágrafos organizados sem margens excessivas */
+    .slider .box .details p {
+      font-size: 1.3rem;
+      color: #B5B4B4;
+      margin-bottom: 1.5rem;
+    }
+    .slider .box .details button {
+      display: inline-block;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding: 1rem 3rem;
+      color: #fff;
+      border-radius: 2rem;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #FF0077;
+    }
+    .slider .box .details button:hover {
+      opacity: 0.8;
+    }
+    .slider .box .details button:focus {
+      outline: none;
+      border: none;
+    }
+    /* Cores de fundo para cada box */
+    .slider .box1 { background-color: #500033; }
+    .slider .box2 { background-color: #000050; }
+    .slider .box3 { background-color: #00501D; }
+    .slider .box4 { background-color: #554D00; }
+    .slider .box5 { background-color: #300050; }
+    .slider .box1 .illustration .inner {
+      background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Eu%20lInkdin.jpeg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: rotate(0deg);
+    }
+    .slider .box2 .illustration .inner,
+    .slider .box3 .illustration .inner,
+    .slider .box4 .illustration .inner,
+    .slider .box5 .illustration .inner {
+      background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .slider .box1 button { background-color: #FF0077; }
+    .slider .box2 button { background-color: #0033FF; }
+    .slider .box3 button { background-color: #00FF44; }
+    .slider .box4 button { background-color: #FF4E00; }
+    .slider .box5 button { background-color: #8000FF; }
+    .slider .illustration {
+      grid-column: 2/-1;
+      grid-row: 1/-1;
+      justify-self: center;
+    }
+    @media only screen and (max-width: 650px) {
+      .slider .illustration {
+        grid-row: 1;
+        grid-column: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .slider .illustration div {
+      height: 25rem;
+      width: 18rem;
+      border-radius: 3rem;
+      background-color: #FF0077;
+      position: relative;
+      transform: skewX(-10deg);
+    }
+    @media only screen and (max-width: 800px) {
+      .slider .illustration div {
+        height: 20rem;
+        width: 15rem;
+      }
+    }
+    .slider .illustration div::after,
+    .slider .illustration div::before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border-radius: 3rem;
+      top: 0;
+      left: 0;
+    }
+    .slider .illustration div::after {
+      transform: translate(4rem, -1rem);
+    }
+    .slider .illustration div::before {
+      transform: translate(2rem, -2rem);
+    }
+    .prev, .next, .trail {
+      z-index: 10000;
+      position: absolute;
+    }
+    .prev, .next {
+      width: 4rem;
+      cursor: pointer;
+      opacity: 0.2;
+      transition: all 0.3s ease;
+    }
+    @media only screen and (max-width: 650px) {
+      .prev, .next {
+        display: none;
+      }
+    }
+    .prev:hover, .next:hover {
+      opacity: 1;
+    }
+    .prev {
+      top: 50%;
+      left: 2%;
+      transform: translateY(-50%);
+    }
+    .next {
+      top: 50%;
+      right: 2%;
+      transform: translateY(-50%);
+    }
+    .trail {
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    @media only screen and (max-width: 650px) {
+      .trail {
+        width: 90%;
+        bottom: 13%;
+      }
+    }
+    .trail div {
+      padding: 2rem;
+      border-top: 3px solid #fff;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: all 0.3s ease;
+    }
+    .trail div:hover {
+      opacity: 0.6;
+    }
+    @media only screen and (max-width: 650px) {
+      .trail div {
+        padding: 1rem;
+      }
+    }
+    .active {
+      opacity: 1 !important;
+    }
+    @media only screen and (max-width: 480px) {
+      html {
+        font-size: 65%;
+      }
+      body {
+        padding: 1rem;
+      }
+      .slider .box .details h1 {
+        font-size: 4rem;
+      }
+      .slider .box .details p {
+        font-size: 1.6rem;
+        line-height: 1.4;
+      }
+      .slider .box .details button {
+        font-size: 1.4rem;
+        padding: 1.2rem 2.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="slider">
-            <!-- BOX 1 -->
-            <div class="box box1">
-                <div class="bg"></div>
-                <div class="details">
-                    <h1>Gustavo Germano Furian</h1>
-                    
-                    <!-- Em vez de <br>, use vários parágrafos -->
-                    <p>Profissional com mais de 4 anos de experiência na área de TI focado principalmente no desenvolvimento de painéis gerenciais, utilizando das ferramentas Power BI e Excel.</p>
-                    <p>Também faço o desenvolvimento de relatórios de acompanhamento, utilizando das ferramentas Power BI, Power Report e Excel.</p>
-                    <p>Atualização e divulgação de KPIs, avaliando e identificando oportunidades de melhoria e de performance nas empresas.</p>
-                    <p>Também atuei como Analista de Suporte, portanto tenho experiência em como ajudar da melhor maneira possível meus clientes.</p>
-                    <p>Graduando no ensino superior em "Bacharelado de Administração de Empresas" pela Faculdade de Americana - FAM.</p>
-                    <p>Tenho vivência com atividades analíticas e conhecimento em Pacote Office Completo, Power BI, Power Report, Power Query, Linguagem M, SQL (Oracle(PLSQL), MySQL e SQLServer), HTML, CSS, JavaScript e ERP.</p>
-                    
-                    <button>Clique Aqui - E tenha acesso ao meu LinkedIn completo</button>
-                </div>
-                <div class="illustration"><div class="inner"></div></div>
-            </div>
-
-            <!-- BOX 2 -->
-            <div class="box box2">
-                <div class="bg"></div>
-                <div class="details">
-                    <h1>Meios de Contato</h1>
-                    <p>Email: gustavosfurian@outlook.com</p>
-                    <p>Instagram: @germanofurian</p>
-                    <p>Facebook: @Gustavo Germano Furian</p>
-                    <p>Telegram: Link abaixo</p>
-                    
-                    <button>Clique Aqui - E entre em contato</button>
-                </div>
-                <div class="illustration"><div class="inner"></div></div>
-            </div>
-
-            <!-- BOX 3 -->
-            <div class="box box3">
-                <div class="bg"></div>
-                <div class="details">
-                    <h1>Sistemas de Gestão no Excel</h1>
-                    <p>Tenho projetos de gerenciamento para empresas completos no Excel.</p>
-                    <p>Relatórios prontos para analisar “Controle de Estoque”, “Contas a Pagar e a Receber”, “Fluxo de Caixa (Entradas e Saídas)”, “Lucro e Prejuízo” e muitos outros indicadores de gestão.</p>
-                    <p>Também possuo indicadores específicos como “Gerenciamento de Capital de Risco”, “Time de Vendas com Metas, Atingido e Por Vendedor”, entre outros.</p>
-                    <p>Desenvolvo sistemas de gestão específicos como “Controle de Frotas”, “Gerenciamento de Fazenda de Pinos”, etc.</p>
-                    
-                    <button>Clique Aqui - Veja Posts Sobre</button>
-                </div>
-                <div class="illustration"><div class="inner"></div></div>
-            </div>
-
-            <!-- BOX 4 -->
-            <div class="box box4">
-                <div class="bg"></div>
-                <div class="details">
-                    <h1>Painéis Gerenciais e Relatórios</h1>
-                    <p>Desenvolvimento de painéis gerenciais utilizando Power BI.</p>
-                    <p>Desenvolvimento de relatórios utilizando Power Report.</p>
-                    <p>Análise de indicadores, KPIs, entre outros pontos importantes de gerenciamento para empresas.</p>
-                    
-                    <button>Clique Aqui - Veja Posts Sobre</button>
-                </div>
-                <div class="illustration"><div class="inner"></div></div>
-            </div>
-
-            <!-- BOX 5 -->
-            <div class="box box5">
-                <div class="bg"></div>
-                <div class="details">
-                    <h1>Para quem já é Cliente! =)</h1>
-                    <p>Caso você já seja cliente e deseja acesso aos melhores benefícios de prestação de serviço em consultoria de tecnologia, link abaixo!</p>
-                    
-                    <button>Clique Aqui - Para Conferir</button>
-                </div>
-                <div class="illustration"><div class="inner"></div></div>
-            </div>
+  <div class="container">
+    <div class="slider">
+      <!-- BOX 1 -->
+      <div class="box box1">
+        <div class="bg"></div>
+        <div class="details">
+          <h1>Gustavo Germano Furian</h1>
+          <p>Profissional com mais de 4 anos de experiência na área de TI focado principalmente no desenvolvimento de painéis gerenciais, utilizando das ferramentas Power BI e Excel.</p>
+          <p>Também faço o desenvolvimento de relatórios de acompanhamento, utilizando das ferramentas Power BI, Power Report e Excel.</p>
+          <p>Atualização e divulgação de KPIs, avaliando e identificando oportunidades de melhoria e de performance nas empresas.</p>
+          <p>Também atuei como Analista de Suporte, portanto tenho experiência em como ajudar da melhor maneira possível meus clientes.</p>
+          <p>Graduando no ensino superior em "Bacharelado de Administração de Empresas" pela Faculdade de Americana - FAM.</p>
+          <p>Tenho vivência com atividades analíticas e conhecimento em Pacote Office Completo, Power BI, Power Report, Power Query, Linguagem M, SQL (Oracle(PLSQL), MySQL e SQLServer), HTML, CSS, JavaScript e ERP.</p>
+          <button>Clique Aqui - E tenha acesso ao meu LinkedIn completo</button>
         </div>
-
-        <!-- Setas de navegação -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="prev" width="56.898" height="91" viewBox="0 0 56.898 91">
-          <path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(0 91) rotate(-90)" fill="#fff"/>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" class="next" width="56.898" height="91" viewBox="0 0 56.898 91">
-          <path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(56.898) rotate(90)" fill="#fff"/>
-        </svg>
-
-        <!-- Indicadores (trail) -->
-        <div class="trail">
-            <div class="box1 active">1</div>
-            <div class="box2">2</div>
-            <div class="box3">3</div>
-            <div class="box4">4</div>
-            <div class="box5">5</div>
+        <div class="illustration"><div class="inner"></div></div>
+      </div>
+      <!-- BOX 2 -->
+      <div class="box box2">
+        <div class="bg"></div>
+        <div class="details">
+          <h1>Meios de Contato</h1>
+          <p>Email: gustavosfurian@outlook.com</p>
+          <p>Instagram: @germanofurian</p>
+          <p>Facebook: @Gustavo Germano Furian</p>
+          <p>Telegram: Link abaixo</p>
+          <button>Clique Aqui - E entre em contato</button>
         </div>
+        <div class="illustration"><div class="inner"></div></div>
+      </div>
+      <!-- BOX 3 -->
+      <div class="box box3">
+        <div class="bg"></div>
+        <div class="details">
+          <h1>Sistemas de Gestão no Excel</h1>
+          <p>Tenho projetos de gerenciamento para empresas completos no Excel.</p>
+          <p>Relatórios prontos para analisar “Controle de Estoque”, “Contas a Pagar e a Receber”, “Fluxo de Caixa (Entradas e Saídas)”, “Lucro e Prejuízo” e muitos outros indicadores de gestão.</p>
+          <p>Também possuo indicadores específicos como “Gerenciamento de Capital de Risco”, “Time de Vendas com Metas, Atingido e Por Vendedor”, entre outros.</p>
+          <p>Desenvolvo sistemas de gestão específicos como “Controle de Frotas”, “Gerenciamento de Fazenda de Pinos”, etc.</p>
+          <button>Clique Aqui - Veja Posts Sobre</button>
+        </div>
+        <div class="illustration"><div class="inner"></div></div>
+      </div>
+      <!-- BOX 4 -->
+      <div class="box box4">
+        <div class="bg"></div>
+        <div class="details">
+          <h1>Painéis Gerenciais e Relatórios</h1>
+          <p>Desenvolvimento de painéis gerenciais utilizando Power BI.</p>
+          <p>Desenvolvimento de relatórios utilizando Power Report.</p>
+          <p>Análise de indicadores, KPIs, entre outros pontos importantes de gerenciamento para empresas.</p>
+          <button>Clique Aqui - Veja Posts Sobre</button>
+        </div>
+        <div class="illustration"><div class="inner"></div></div>
+      </div>
+      <!-- BOX 5 -->
+      <div class="box box5">
+        <div class="bg"></div>
+        <div class="details">
+          <h1>Para quem já é Cliente! =)</h1>
+          <p>Caso você já seja cliente e deseja acesso aos melhores benefícios de prestação de serviço em consultoria de tecnologia, link abaixo!</p>
+          <button>Clique Aqui - Para Conferir</button>
+        </div>
+        <div class="illustration"><div class="inner"></div></div>
+      </div>
     </div>
-
-    <script>
+    <!-- Setas de navegação -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="prev" width="56.898" height="91" viewBox="0 0 56.898 91">
+      <path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(0 91) rotate(-90)" fill="#fff"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="next" width="56.898" height="91" viewBox="0 0 56.898 91">
+      <path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(56.898) rotate(90)" fill="#fff"/>
+    </svg>
+    <!-- Indicadores (trail) -->
+    <div class="trail">
+      <div class="box1 active">1</div>
+      <div class="box2">2</div>
+      <div class="box3">3</div>
+      <div class="box4">4</div>
+      <div class="box5">5</div>
+    </div>
+  </div>
+  <script>
     const slider = document.querySelector(".slider");
     const trail = document.querySelector(".trail").querySelectorAll("div");
-
     let value = 0;
     let trailValue = 0;
     let interval = 4000;
-    let start = setInterval(() => slide("increase"), interval);  // Define o intervalo para troca automática
-
+    let start = setInterval(() => slide("increase"), interval);
     const slide = (condition) => {
-        clearInterval(start);  // Limpa o intervalo atual
-        condition === "increase" ? initiateINC() : initiateDEC();
-        move(value, trailValue);
-        animate();
-        start = setInterval(() => slide("increase"), interval);  // Reinicia o intervalo
+      clearInterval(start);
+      condition === "increase" ? initiateINC() : initiateDEC();
+      move(value, trailValue);
+      animate();
+      start = setInterval(() => slide("increase"), interval);
     };
-
     const initiateINC = () => {
-        trail.forEach(cur => cur.classList.remove("active"));
-        value = value >= 80 ? 0 : value + 20;  // Garante que o valor volte a 0 ao atingir 80
-        trailUpdate();
+      trail.forEach(cur => cur.classList.remove("active"));
+      value = value >= 80 ? 0 : value + 20;
+      trailUpdate();
     };
-
     const initiateDEC = () => {
-        trail.forEach(cur => cur.classList.remove("active"));
-        value = value <= 0 ? 80 : value - 20;  // Garante que o valor vá para 80 se estiver em 0
-        trailUpdate();
+      trail.forEach(cur => cur.classList.remove("active"));
+      value = value <= 0 ? 80 : value - 20;
+      trailUpdate();
     };
-
     const move = (S, T) => {
-        slider.style.transform = `translateX(-${S}%)`;
-        trail[T].classList.add("active");
+      slider.style.transform = `translateX(-${S}%)`;
+      trail[T].classList.add("active");
     };
-
-    // Caso não esteja utilizando GSAP, remova ou comente a função animate()
     const animate = () => {
-        // tl.restart();
+      // Se estiver usando animações, adicione aqui; caso contrário, mantenha vazio.
     };
-
     const trailUpdate = () => {
-        switch(value) {
-            case 0: trailValue = 0; break;
-            case 20: trailValue = 1; break;
-            case 40: trailValue = 2; break;
-            case 60: trailValue = 3; break;
-            case 80: trailValue = 4; break;
-        }
+      switch(value) {
+        case 0: trailValue = 0; break;
+        case 20: trailValue = 1; break;
+        case 40: trailValue = 2; break;
+        case 60: trailValue = 3; break;
+        case 80: trailValue = 4; break;
+      }
     };
-
-    // Eventos de clique para setas e indicadores
     document.querySelectorAll("svg").forEach(cur => {
-        cur.addEventListener("click", () => cur.classList.contains("next") ? slide("increase") : slide("decrease"));
+      cur.addEventListener("click", () => cur.classList.contains("next") ? slide("increase") : slide("decrease"));
     });
-
     trail.forEach(cur => cur.addEventListener("click", (ev) => {
-        clearInterval(start);
-        trail.forEach(cur => cur.classList.remove("active"));
-        const check = ev.target;
-        check.classList.add("active");
-        // Converte o número do box em % (1 -> 0%, 2 -> 20%, etc.)
-        value = parseInt(check.textContent.trim()) * 20 - 20;
-        trailUpdate();
-        move(value, trailValue);
-        animate();
-        start = setInterval(() => slide("increase"), interval);
+      clearInterval(start);
+      trail.forEach(cur => cur.classList.remove("active"));
+      const check = ev.target;
+      check.classList.add("active");
+      value = parseInt(check.textContent.trim()) * 20 - 20;
+      trailUpdate();
+      move(value, trailValue);
+      animate();
+      start = setInterval(() => slide("increase"), interval);
     }));
-
-    // Adicionando suporte a swipe (arrastar com o dedo)
     let startX = 0;
     let isSwiping = false;
-
     slider.addEventListener("touchstart", function(e) {
-        startX = e.touches[0].clientX;
-        isSwiping = true;
+      startX = e.touches[0].clientX;
+      isSwiping = true;
     });
-
     slider.addEventListener("touchmove", function(e) {
-        if (!isSwiping) return;
-        let moveX = e.touches[0].clientX;
-        let diff = startX - moveX;
-        // Se o movimento for superior a 50px, aciona a troca de slide
-        if (Math.abs(diff) > 50) {
-            diff > 0 ? slide("increase") : slide("decrease");
-            isSwiping = false;
-        }
-    });
-
-    slider.addEventListener("touchend", function() {
+      if (!isSwiping) return;
+      let moveX = e.touches[0].clientX;
+      let diff = startX - moveX;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? slide("increase") : slide("decrease");
         isSwiping = false;
+      }
     });
-
-    // Botão 1: Abrir perfil do LinkedIn
+    slider.addEventListener("touchend", function() {
+      isSwiping = false;
+    });
     document.querySelector(".box1 button").addEventListener("click", function() {
-        window.open("https://www.linkedin.com/in/gustavo-furian-425062215/", "_blank");
+      window.open("https://www.linkedin.com/in/gustavo-furian-425062215/", "_blank");
     });
-
-    // Botão 2: Abrir Telegram para conversar
     document.querySelector(".box2 button").addEventListener("click", function() {
-        window.open("https://t.me/GustavoGermanoFurian", "_blank");
+      window.open("https://t.me/GustavoGermanoFurian", "_blank");
     });
-
-    // Botão 3: Abrir post Excel no Instagram
     document.querySelector(".box3 button").addEventListener("click", function() {
-        window.open("https://www.instagram.com/p/DBK2X3JREBV5kvlNBeIA9xeVtTsm6C40Ot7BTs0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==", "_blank");
+      window.open("https://www.instagram.com/p/DBK2X3JREBV5kvlNBeIA9xeVtTsm6C40Ot7BTs0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==", "_blank");
     });
-
-    // Botão 4: Abrir post PowerBI no Instagram
     document.querySelector(".box4 button").addEventListener("click", function() {
-        window.open("https://www.instagram.com/p/DBK2pLZR0R5pfsTDZiFmjRLIp52SDY6PeWskeQ0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==", "_blank");
+      window.open("https://www.instagram.com/p/DBK2pLZR0R5pfsTDZiFmjRLIp52SDY6PeWskeQ0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==", "_blank");
     });
-
-    // Botão 5: Abrir link assinatura para clientes
     document.querySelector(".box5 button").addEventListener("click", function() {
-        window.open("https://go.hotmart.com/K96024277L", "_blank");
+      window.open("https://go.hotmart.com/K96024277L", "_blank");
     });
-    </script>
+  </script>
 </body>
 </html>
