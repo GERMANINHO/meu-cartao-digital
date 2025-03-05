@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- 1) Meta viewport para responsividade em dispositivos móveis -->
+    <!-- Meta viewport para responsividade em dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Cartão Corporativo Gustavo Germano Furian - Consultor de TI</title>
@@ -22,7 +22,7 @@
         /* Ajuste para telas até 800px */
         @media only screen and (max-width: 800px) {
             html {
-                font-size: 57%; /* Você pode aumentar este valor se achar que o texto fica muito pequeno */
+                font-size: 57%; /* Você pode ajustar esse valor conforme necessário */
             }
         }
 
@@ -100,12 +100,14 @@
         }
 
         @media only screen and (max-width: 650px) {
+            /* Para telas pequenas, removemos o skew e ajustamos os espaçamentos */
             .slider .box .bg {
                 width: 100%;
                 left: 0;
                 bottom: 0;
                 height: 54%;
-                transform: skewX(0deg);
+                transform: none;
+                padding-left: 0;
             }
         }
 
@@ -125,7 +127,7 @@
             .slider .box .bg::before {
                 width: 120%;
                 bottom: 0;
-                transform: skewX(0deg);
+                transform: none;
             }
         }
 
@@ -138,12 +140,13 @@
         }
 
         @media only screen and (max-width: 650px) {
+            /* Para telas pequenas, removemos a translação e centralizamos melhor */
             .slider .box .details {
                 grid-row: 2/span 1;
                 grid-column: 1/-1;
                 text-align: center;
                 padding: 2rem;
-                transform: translateY(-9rem);
+                transform: none;
             }
         }
 
@@ -383,7 +386,7 @@
             opacity: 1 !important;
         }
 
-        /* 2) Ajuste adicional para telas menores que 480px (opcional) */
+        /* Ajuste adicional para telas menores que 480px (opcional) */
         @media only screen and (max-width: 480px) {
             html {
                 font-size: 65%;
@@ -504,37 +507,35 @@
     let value = 0;
     let trailValue = 0;
     let interval = 4000;
-    let start = setInterval(() => slide("increase"), interval);  // Define the interval at the top for global access
+    let start = setInterval(() => slide("increase"), interval);  // Define o intervalo para troca automática
 
     const slide = (condition) => {
-        clearInterval(start);  // Clear the current interval
+        clearInterval(start);  // Limpa o intervalo atual
         condition === "increase" ? initiateINC() : initiateDEC();
         move(value, trailValue);
         animate();
-        start = setInterval(() => slide("increase"), interval);  // Restart the interval
+        start = setInterval(() => slide("increase"), interval);  // Reinicia o intervalo
     };
 
     const initiateINC = () => {
         trail.forEach(cur => cur.classList.remove("active"));
-        value = value >= 80 ? 0 : value + 20;  // Ensure the value wraps around correctly
+        value = value >= 80 ? 0 : value + 20;  // Garante que o valor volte a 0 ao atingir 80
         trailUpdate();
     };
 
     const initiateDEC = () => {
         trail.forEach(cur => cur.classList.remove("active"));
-        value = value <= 0 ? 80 : value - 20;  // Ensure the value wraps around correctly
+        value = value <= 0 ? 80 : value - 20;  // Garante que o valor vá para 80 se estiver em 0
         trailUpdate();
     };
 
     const move = (S, T) => {
-        // Corrigindo a template literal para aplicar transform corretamente
         slider.style.transform = `translateX(-${S}%)`;
         trail[T].classList.add("active");
     };
 
-    // Se não estiver usando GSAP ou outro library, você pode comentar animate()
+    // Caso não esteja utilizando GSAP, remova ou comente a função animate()
     const animate = () => {
-        // Se "tl" não estiver definido, comente ou remova esta linha
         // tl.restart();
     };
 
@@ -548,6 +549,7 @@
         }
     };
 
+    // Eventos de clique para setas e indicadores
     document.querySelectorAll("svg").forEach(cur => {
         cur.addEventListener("click", () => cur.classList.contains("next") ? slide("increase") : slide("decrease"));
     });
@@ -557,13 +559,37 @@
         trail.forEach(cur => cur.classList.remove("active"));
         const check = ev.target;
         check.classList.add("active");
-        // Pegando o número do box e transformando em % (1 -> 0%, 2 -> 20%, etc)
+        // Converte o número do box em % (1 -> 0%, 2 -> 20%, etc.)
         value = parseInt(check.textContent.trim()) * 20 - 20;
         trailUpdate();
         move(value, trailValue);
         animate();
         start = setInterval(() => slide("increase"), interval);
     }));
+
+    // Adicionando suporte a swipe (arrastar com o dedo)
+    let startX = 0;
+    let isSwiping = false;
+
+    slider.addEventListener("touchstart", function(e) {
+        startX = e.touches[0].clientX;
+        isSwiping = true;
+    });
+
+    slider.addEventListener("touchmove", function(e) {
+        if (!isSwiping) return;
+        let moveX = e.touches[0].clientX;
+        let diff = startX - moveX;
+        // Se o movimento for superior a 50px, aciona a troca de slide
+        if (Math.abs(diff) > 50) {
+            diff > 0 ? slide("increase") : slide("decrease");
+            isSwiping = false;
+        }
+    });
+
+    slider.addEventListener("touchend", function() {
+        isSwiping = false;
+    });
 
     // Botão 1: Abrir perfil do LinkedIn
     document.querySelector(".box1 button").addEventListener("click", function() {
