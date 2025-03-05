@@ -22,7 +22,7 @@
         /* Ajuste para telas até 800px */
         @media only screen and (max-width: 800px) {
             html {
-                font-size: 57%; /* Você pode ajustar esse valor conforme necessário */
+                font-size: 57%; /* Ajuste conforme necessário */
             }
         }
 
@@ -50,22 +50,26 @@
             }
         }
 
+        /* Removemos a altura fixa para permitir que o conteúdo cresça */
         .slider {
             display: flex;
             width: 500%;
-            height: 55rem;
+            /* height: 55rem;  <-- Removido */
             transition: all 0.25s ease-in;
             transform: translateX(0);
         }
 
-        @media only screen and (max-width: 1000px) {
+        /* Se quiser manter altura fixa em telas grandes, você pode recolocar 
+           dentro de @media (min-width: 1001px) { .slider { height: 55rem; } } */
+
+        /* @media only screen and (max-width: 1000px) {
             .slider {
-                height: 100vh;
+                height: 100vh; <-- Removido também
             }
-        }
+        } */
 
         .slider .box {
-            height: 100%;
+            /* Agora a altura do box será automática, conforme o conteúdo */
             width: 100%;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -156,21 +160,17 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Removemos inline-block e margin-right grande */
         .slider .box .details p {
-            display: inline-block;
             font-size: 1.3rem;
             color: #B5B4B4;
-            margin-bottom: 2rem;
-            margin-right: 5rem;
-        }
-
-        @media only screen and (max-width: 800px) {
-            .slider .box .details p {
-                margin-right: 0;
-            }
+            margin-bottom: 1.5rem; /* espaçamento entre parágrafos */
         }
 
         .slider .box .details button {
+            display: inline-block; /* garante que o botão fique em bloco */
+            margin-top: 1rem;
+            margin-bottom: 1rem;
             padding: 1rem 3rem;
             color: #fff;
             border-radius: 2rem;
@@ -178,6 +178,7 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            background-color: #FF0077; /* Você pode customizar cor */
         }
 
         .slider .box .details button:hover {
@@ -189,10 +190,24 @@
             border: none;
         }
 
+        /* Ajustes de cor para cada box */
         .slider .box1 {
             background-color: #500033;
         }
+        .slider .box2 {
+            background-color: #000050;
+        }
+        .slider .box3 {
+            background-color: #00501D;
+        }
+        .slider .box4 {
+            background-color: #554D00;
+        }
+        .slider .box5 {
+            background-color: #300050;
+        }
 
+        /* Imagens de fundo */
         .slider .box1 .illustration .inner {
             background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Eu%20lInkdin.jpeg'); 
             background-size: cover; 
@@ -200,66 +215,33 @@
             background-repeat: no-repeat; 
             transform: rotate(0deg); 
         }
-
-        .slider .box1 button {
-            background-color: #FF0077;
-        }
-
-        .slider .box2 {
-            background-color: #000050;
-        }
-
         .slider .box2 .illustration .inner {
             background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg'); 
             background-size: cover;
             background-position: center;
         }
-
-        .slider .box2 button {
-            background-color: #0033FF;
-        }
-
-        .slider .box3 {
-            background-color: #00501D;
-        }
-
         .slider .box3 .illustration .inner {
             background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg'); 
             background-size: cover;
             background-position: center;
         }
-
-        .slider .box3 button {
-            background-color: #00FF44;
-        }
-
-        .slider .box4 {
-            background-color: #554D00;
-        }
-
         .slider .box4 .illustration .inner {
             background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg'); 
             background-size: cover;
             background-position: center;
         }
-
-        .slider .box4 button {
-            background-color: #FF4E00;
-        }
-
-        .slider .box5 {
-            background-color: #300050;
-        }
-
         .slider .box5 .illustration .inner {
             background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Imagem%20PJ.jpg'); 
             background-size: cover;
             background-position: center;
         }
 
-        .slider .box5 button {
-            background-color: #8000FF;
-        }
+        /* Botões específicos (caso queira cores diferentes) */
+        .slider .box1 button { background-color: #FF0077; }
+        .slider .box2 button { background-color: #0033FF; }
+        .slider .box3 button { background-color: #00FF44; }
+        .slider .box4 button { background-color: #FF4E00; }
+        .slider .box5 button { background-color: #8000FF; }
 
         .slider .illustration {
             grid-column: 2/-1;
@@ -293,7 +275,8 @@
             }
         }
 
-        .slider .illustration div::after, .slider .illustration div::before {
+        .slider .illustration div::after, 
+        .slider .illustration div::before {
             content: "";
             position: absolute;
             height: 100%;
@@ -306,7 +289,6 @@
         .slider .illustration div::after {
             transform: translate(4rem, -1rem);
         }
-
         .slider .illustration div::before {
             transform: translate(2rem, -2rem);
         }
@@ -338,7 +320,6 @@
             left: 2%;
             transform: translateY(-50%);
         }
-
         .next {
             top: 50%;
             right: 2%;
@@ -411,71 +392,76 @@
 <body>
     <div class="container">
         <div class="slider">
+            <!-- BOX 1 -->
             <div class="box box1">
                 <div class="bg"></div>
                 <div class="details">
-                    <h1>Gustavo Germano Furian</h1> <!-- Primeira Caixa -->
-                    <p>
-                     - Profissional com mais de 4 anos de experiência na área de TI focado principalmente no desenvolvimento de painéis gerenciais, utilizando das ferramentas Power BI e Excel;<br>
-                     - Também faço o desenvolvimento de relatórios de acompanhamento, utilizando das ferramentas Power BI, Power Report e Excel;<br>
-                     - Atualização e divulgação de KPIs, avaliando e identificando oportunidades de melhoria e de performance nas empresas;<br>
-                     - Também atuei como Analista de Suporte, portanto tenho experiência em como ajudar da melhor maneira possível meus clientes;<br>
-                     - Graduando no ensino superior em "Bacharelado de Administração de Empresas" pela Faculdade de Americana - FAM;<br>
-                     - Tenho vivência com atividades analíticas;<br>
-                     - Conhecimento em Pacote Office Completo, Power BI, Power Report, Power Query, Linguagem M, SQL (Oracle(PLSQL), MySQL e SQLServer), HTML e HTML5, CSS e CSS3, JavaScript e conhecimento em ERP.<br>
-                    </p>
+                    <h1>Gustavo Germano Furian</h1>
+                    
+                    <!-- Em vez de <br>, use vários parágrafos -->
+                    <p>Profissional com mais de 4 anos de experiência na área de TI focado principalmente no desenvolvimento de painéis gerenciais, utilizando das ferramentas Power BI e Excel.</p>
+                    <p>Também faço o desenvolvimento de relatórios de acompanhamento, utilizando das ferramentas Power BI, Power Report e Excel.</p>
+                    <p>Atualização e divulgação de KPIs, avaliando e identificando oportunidades de melhoria e de performance nas empresas.</p>
+                    <p>Também atuei como Analista de Suporte, portanto tenho experiência em como ajudar da melhor maneira possível meus clientes.</p>
+                    <p>Graduando no ensino superior em "Bacharelado de Administração de Empresas" pela Faculdade de Americana - FAM.</p>
+                    <p>Tenho vivência com atividades analíticas e conhecimento em Pacote Office Completo, Power BI, Power Report, Power Query, Linguagem M, SQL (Oracle(PLSQL), MySQL e SQLServer), HTML, CSS, JavaScript e ERP.</p>
+                    
                     <button>Clique Aqui - E tenha acesso ao meu LinkedIn completo</button>
                 </div>
                 <div class="illustration"><div class="inner"></div></div>
             </div>
+
+            <!-- BOX 2 -->
             <div class="box box2">
                 <div class="bg"></div>
                 <div class="details">
                     <h1>Meios de Contato</h1>
-                    <p>
-                     - Email: gustavosfurian@outlook.com;<br>
-                     - Instagram: @germanofurian;<br>
-                     - Facebook: @Gustavo Germano Furian;<br>
-                     - Telegram abaixo.
-                    </p>
+                    <p>Email: gustavosfurian@outlook.com</p>
+                    <p>Instagram: @germanofurian</p>
+                    <p>Facebook: @Gustavo Germano Furian</p>
+                    <p>Telegram: Link abaixo</p>
+                    
                     <button>Clique Aqui - E entre em contato</button>
                 </div>
                 <div class="illustration"><div class="inner"></div></div>
             </div>
+
+            <!-- BOX 3 -->
             <div class="box box3">
                 <div class="bg"></div>
                 <div class="details">
                     <h1>Sistemas de Gestão no Excel</h1>
-                    <p>
-                     - Tenho projetos de gerenciamento para empresas completos no excel;<br>
-                     - Tenho relatórios prontos para analisar "Controle de Estoque", "Lançamentos das Contas a Pagar e Contas a Receber", "Fluxo de Caixa (Entradas e Saídas)", "Lucro e Prejuízo" e muitos outros indicadores e pontos de gestão;<br>
-                     - Também temos indicadores específicos como "Gerenciamento de Capital de Risco", "Time de Vendas com Metas, Atingido e Por Vendedor", entre outros;<br>
-                     - Temos sistemas de gestão específicos como "Controle de Frotas", "Gerenciamento de Fazenda de Pinos", e muitos outros.<br>
-                    </p>
+                    <p>Tenho projetos de gerenciamento para empresas completos no Excel.</p>
+                    <p>Relatórios prontos para analisar “Controle de Estoque”, “Contas a Pagar e a Receber”, “Fluxo de Caixa (Entradas e Saídas)”, “Lucro e Prejuízo” e muitos outros indicadores de gestão.</p>
+                    <p>Também possuo indicadores específicos como “Gerenciamento de Capital de Risco”, “Time de Vendas com Metas, Atingido e Por Vendedor”, entre outros.</p>
+                    <p>Desenvolvo sistemas de gestão específicos como “Controle de Frotas”, “Gerenciamento de Fazenda de Pinos”, etc.</p>
+                    
                     <button>Clique Aqui - Veja Posts Sobre</button>
                 </div>
                 <div class="illustration"><div class="inner"></div></div>
             </div>
+
+            <!-- BOX 4 -->
             <div class="box box4">
                 <div class="bg"></div>
                 <div class="details">
                     <h1>Painéis Gerenciais e Relatórios</h1>
-                    <p>
-                     - Desenvolvimento de painéis gerenciais utilizando do Power BI;<br>
-                     - Desenvolvimento de relatórios utilizando do Power Report;<br>
-                     - Análise de indicadores, KPIs, entre outros pontos importantes de gerenciamento para empresas.<br>
-                    </p>
+                    <p>Desenvolvimento de painéis gerenciais utilizando Power BI.</p>
+                    <p>Desenvolvimento de relatórios utilizando Power Report.</p>
+                    <p>Análise de indicadores, KPIs, entre outros pontos importantes de gerenciamento para empresas.</p>
+                    
                     <button>Clique Aqui - Veja Posts Sobre</button>
                 </div>
                 <div class="illustration"><div class="inner"></div></div>
             </div>
+
+            <!-- BOX 5 -->
             <div class="box box5">
                 <div class="bg"></div>
                 <div class="details">
                     <h1>Para quem já é Cliente! =)</h1>
-                    <p>
-                     - Caso você já seja cliente e deseja acesso aos melhores benefícios de prestação de serviço em consultoria de tecnologia, link abaixo!<br>
-                    </p>
+                    <p>Caso você já seja cliente e deseja acesso aos melhores benefícios de prestação de serviço em consultoria de tecnologia, link abaixo!</p>
+                    
                     <button>Clique Aqui - Para Conferir</button>
                 </div>
                 <div class="illustration"><div class="inner"></div></div>
