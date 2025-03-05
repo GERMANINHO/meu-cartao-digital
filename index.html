@@ -35,6 +35,8 @@
         padding: 0;
       }
     }
+
+    /* Container do slider */
     .container {
       position: relative;
       overflow: hidden;
@@ -45,6 +47,7 @@
         border-radius: 0;
       }
     }
+
     /* Em desktop, altura fixa; em mobile, altura auto com rolagem vertical */
     @media (min-width: 1001px) {
       .slider {
@@ -59,12 +62,15 @@
         overflow-y: auto;
       }
     }
+
     .slider {
       display: flex;
       width: 500%;
       transition: all 0.25s ease-in;
       transform: translateX(0);
     }
+
+    /* Cada box é 1 slide */
     .slider .box {
       width: 100%;
       display: grid;
@@ -79,6 +85,8 @@
         grid-template-rows: auto auto;
       }
     }
+
+    /* BG inclinado */
     .slider .box .bg {
       padding: 2rem;
       background-color: rgba(0, 0, 0, 0.2);
@@ -96,7 +104,6 @@
       }
     }
     @media only screen and (max-width: 650px) {
-      /* Em mobile, removemos o skew e ajustamos os espaçamentos */
       .slider .box .bg {
         width: 100%;
         left: 0;
@@ -124,6 +131,8 @@
         transform: none;
       }
     }
+
+    /* Detalhes (texto + botão) */
     .slider .box .details {
       padding: 5rem;
       padding-left: 10rem;
@@ -145,7 +154,6 @@
       font-weight: 500;
       margin-bottom: 0.5rem;
     }
-    /* Parágrafos organizados sem margens excessivas */
     .slider .box .details p {
       font-size: 1.3rem;
       color: #B5B4B4;
@@ -162,7 +170,7 @@
       border: none;
       cursor: pointer;
       transition: all 0.3s ease;
-      background-color: #FF0077;
+      /* Removido background-color fixo, pois cada box terá a sua cor */
     }
     .slider .box .details button:hover {
       opacity: 0.8;
@@ -171,14 +179,24 @@
       outline: none;
       border: none;
     }
-    /* Cores de fundo para cada box */
+
+    /* Cores de fundo das boxes */
     .slider .box1 { background-color: #500033; }
     .slider .box2 { background-color: #000050; }
     .slider .box3 { background-color: #00501D; }
     .slider .box4 { background-color: #554D00; }
     .slider .box5 { background-color: #300050; }
+
+    /* Cores individuais dos botões */
+    .slider .box1 button { background-color: #FF0077; }
+    .slider .box2 button { background-color: #0033FF; }
+    .slider .box3 button { background-color: #00FF44; }
+    .slider .box4 button { background-color: #FF4E00; }
+    .slider .box5 button { background-color: #8000FF; }
+
+    /* Imagens das ilustrações */
     .slider .box1 .illustration .inner {
-      background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Eu%20lInkdin.jpeg'); 
+      background-image: url('https://raw.githubusercontent.com/GERMANINHO/meu-cartao-digital/main/Eu%20lInkdin.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -192,11 +210,8 @@
       background-size: cover;
       background-position: center;
     }
-    .slider .box1 button { background-color: #FF0077; }
-    .slider .box2 button { background-color: #0033FF; }
-    .slider .box3 button { background-color: #00FF44; }
-    .slider .box4 button { background-color: #FF4E00; }
-    .slider .box5 button { background-color: #8000FF; }
+
+    /* Ilustração (cartão) */
     .slider .illustration {
       grid-column: 2/-1;
       grid-row: 1/-1;
@@ -241,11 +256,11 @@
     .slider .illustration div::before {
       transform: translate(2rem, -2rem);
     }
-    .prev, .next, .trail {
+
+    /* Setas de navegação (prev/next) */
+    .prev, .next {
       z-index: 10000;
       position: absolute;
-    }
-    .prev, .next {
       width: 4rem;
       cursor: pointer;
       opacity: 0.2;
@@ -269,25 +284,18 @@
       right: 2%;
       transform: translateY(-50%);
     }
+
+    /* A trilha (1,2,3,4,5) agora NÃO é absoluta e está FORA da .container */
     .trail {
-      bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      margin: 2rem auto;
+      display: flex;
       gap: 1rem;
+      justify-content: center;
       text-align: center;
       font-size: 1.5rem;
     }
-    @media only screen and (max-width: 650px) {
-      .trail {
-        width: 90%;
-        bottom: 13%;
-      }
-    }
     .trail div {
-      padding: 2rem;
+      padding: 1.5rem 2rem;
       border-top: 3px solid #fff;
       cursor: pointer;
       opacity: 0.3;
@@ -296,14 +304,11 @@
     .trail div:hover {
       opacity: 0.6;
     }
-    @media only screen and (max-width: 650px) {
-      .trail div {
-        padding: 1rem;
-      }
-    }
     .active {
       opacity: 1 !important;
     }
+
+    /* Ajustes para telas muito pequenas */
     @media only screen and (max-width: 480px) {
       html {
         font-size: 65%;
@@ -321,6 +326,9 @@
       .slider .box .details button {
         font-size: 1.4rem;
         padding: 1.2rem 2.5rem;
+      }
+      .trail div {
+        padding: 1rem;
       }
     }
   </style>
@@ -343,6 +351,7 @@
         </div>
         <div class="illustration"><div class="inner"></div></div>
       </div>
+
       <!-- BOX 2 -->
       <div class="box box2">
         <div class="bg"></div>
@@ -356,6 +365,7 @@
         </div>
         <div class="illustration"><div class="inner"></div></div>
       </div>
+
       <!-- BOX 3 -->
       <div class="box box3">
         <div class="bg"></div>
@@ -369,6 +379,7 @@
         </div>
         <div class="illustration"><div class="inner"></div></div>
       </div>
+
       <!-- BOX 4 -->
       <div class="box box4">
         <div class="bg"></div>
@@ -381,6 +392,7 @@
         </div>
         <div class="illustration"><div class="inner"></div></div>
       </div>
+
       <!-- BOX 5 -->
       <div class="box box5">
         <div class="bg"></div>
@@ -392,65 +404,68 @@
         <div class="illustration"><div class="inner"></div></div>
       </div>
     </div>
-    <!-- Setas de navegação -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="prev" width="56.898" height="91" viewBox="0 0 56.898 91">
-      <path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(0 91) rotate(-90)" fill="#fff"/>
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" class="next" width="56.898" height="91" viewBox="0 0 56.898 91">
-      <path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(56.898) rotate(90)" fill="#fff"/>
-    </svg>
-    <!-- Indicadores (trail) -->
-    <div class="trail">
-      <div class="box1 active">1</div>
-      <div class="box2">2</div>
-      <div class="box3">3</div>
-      <div class="box4">4</div>
-      <div class="box5">5</div>
-    </div>
   </div>
+
+  <!-- A trilha (1,2,3,4,5) foi movida para FORA do .container -->
+  <div class="trail">
+    <div class="box1 active">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box4">4</div>
+    <div class="box5">5</div>
+  </div>
+
   <script>
     const slider = document.querySelector(".slider");
-    const trail = document.querySelector(".trail").querySelectorAll("div");
+    const trail = document.querySelectorAll(".trail div");
+
     let value = 0;
     let trailValue = 0;
     let interval = 4000;
     let start = setInterval(() => slide("increase"), interval);
+
     const slide = (condition) => {
       clearInterval(start);
       condition === "increase" ? initiateINC() : initiateDEC();
       move(value, trailValue);
-      animate();
       start = setInterval(() => slide("increase"), interval);
     };
+
     const initiateINC = () => {
       trail.forEach(cur => cur.classList.remove("active"));
       value = value >= 80 ? 0 : value + 20;
       trailUpdate();
     };
+
     const initiateDEC = () => {
       trail.forEach(cur => cur.classList.remove("active"));
       value = value <= 0 ? 80 : value - 20;
       trailUpdate();
     };
+
     const move = (S, T) => {
       slider.style.transform = `translateX(-${S}%)`;
       trail[T].classList.add("active");
     };
-    const animate = () => {
-      // Se estiver usando animações, adicione aqui; caso contrário, mantenha vazio.
-    };
+
     const trailUpdate = () => {
       switch(value) {
-        case 0: trailValue = 0; break;
+        case 0:  trailValue = 0; break;
         case 20: trailValue = 1; break;
         case 40: trailValue = 2; break;
         case 60: trailValue = 3; break;
         case 80: trailValue = 4; break;
       }
     };
+
+    // Clique nas setas
     document.querySelectorAll("svg").forEach(cur => {
-      cur.addEventListener("click", () => cur.classList.contains("next") ? slide("increase") : slide("decrease"));
+      cur.addEventListener("click", () => {
+        cur.classList.contains("next") ? slide("increase") : slide("decrease");
+      });
     });
+
+    // Clique na trilha (1,2,3,4,5)
     trail.forEach(cur => cur.addEventListener("click", (ev) => {
       clearInterval(start);
       trail.forEach(cur => cur.classList.remove("active"));
@@ -459,11 +474,13 @@
       value = parseInt(check.textContent.trim()) * 20 - 20;
       trailUpdate();
       move(value, trailValue);
-      animate();
       start = setInterval(() => slide("increase"), interval);
     }));
+
+    // Suporte a swipe
     let startX = 0;
     let isSwiping = false;
+
     slider.addEventListener("touchstart", function(e) {
       startX = e.touches[0].clientX;
       isSwiping = true;
@@ -480,6 +497,8 @@
     slider.addEventListener("touchend", function() {
       isSwiping = false;
     });
+
+    // Botões
     document.querySelector(".box1 button").addEventListener("click", function() {
       window.open("https://www.linkedin.com/in/gustavo-furian-425062215/", "_blank");
     });
