@@ -96,21 +96,31 @@
       gap: 2rem;
     }
     .card {
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 1rem;
       padding: 1.5rem;
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
     .card h3 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
       color: #fff;
     }
-    .card p {
-      font-size: 1.4rem;
-      color: #ccc;
-      line-height: 1.5;
+    .card ul {
+      text-align: left;
+      list-style-type: disc;
+      padding-left: 1.2rem;
       margin-bottom: 1rem;
+      font-size: 1.3rem;
+      color: #ccc;
+    }
+    .card ul li {
+      margin-bottom: 0.5rem;
     }
     .btn-card {
       display: inline-block;
@@ -214,8 +224,7 @@
       <h1>Gustavo Germano Furian</h1>
       <p class="subtitle">Consultor de TI &amp; Especialista em Painéis Gerenciais</p>
       <p class="resumo">
-        Profissional com mais de 4 anos de experiência na área de TI, focado principalmente
-        no desenvolvimento de painéis gerenciais e relatórios de acompanhamento utilizando Power BI, Power Report e Excel.
+        Profissional com mais de 4 anos de experiência na área de TI, focado no desenvolvimento de painéis gerenciais e relatórios de acompanhamento utilizando Power BI, Power Report e Excel.
       </p>
     </header>
 
@@ -227,8 +236,12 @@
         <!-- Card 1: Sistemas de Gestão no Excel -->
         <div class="card">
           <h3>Sistemas de Gestão no Excel</h3>
-          <p>Projetos de gerenciamento para empresas, relatórios prontos para “Controle de Estoque”,
-            “Contas a Pagar e Receber”, “Fluxo de Caixa” e muito mais.</p>
+          <ul>
+            <li>Projetos de gerenciamento</li>
+            <li>Relatórios para Controle de Estoque</li>
+            <li>Contas a Pagar e Receber</li>
+            <li>Fluxo de Caixa</li>
+          </ul>
           <a href="https://www.instagram.com/p/DBK2X3JREBV5kvlNBeIA9xeVtTsm6C40Ot7BTs0/"
              target="_blank" class="btn-card">
             Veja Posts Sobre
@@ -238,8 +251,12 @@
         <!-- Card 2: Painéis Gerenciais e Relatórios -->
         <div class="card">
           <h3>Painéis Gerenciais &amp; Relatórios</h3>
-          <p>Desenvolvimento de painéis utilizando Power BI. Relatórios com Power Report.
-            Análise de indicadores, KPIs e outros pontos de gestão importantes.</p>
+          <ul>
+            <li>Dashboards interativos</li>
+            <li>Relatórios customizados</li>
+            <li>Análise de KPIs</li>
+            <li>Indicadores estratégicos</li>
+          </ul>
           <a href="https://www.instagram.com/p/DBK2pLZR0R5pfsTDZiFmjRLIp52SDY6PeWskeQ0/"
              target="_blank" class="btn-card">
             Veja Posts Sobre
@@ -249,8 +266,11 @@
         <!-- Card 3: Consultoria Personalizada -->
         <div class="card">
           <h3>Consultoria de TI</h3>
-          <p>Para quem já é cliente, ofereço benefícios exclusivos em prestação de serviço
-             de consultoria tecnológica. Clique abaixo para saber mais.</p>
+          <ul>
+            <li>Benefícios exclusivos</li>
+            <li>Análise personalizada</li>
+            <li>Suporte especializado</li>
+          </ul>
           <a href="https://go.hotmart.com/K96024277L"
              target="_blank" class="btn-card">
             Conferir
@@ -290,9 +310,8 @@
   </footer>
 
   <script>
-    // Se quiser adicionar qualquer JS extra (ex.: swipe, animações), pode colocar aqui.
-    // Mantendo a mesma URL: https://germaninho.github.io/meu-cartao-digital/
-    // Assim, o QR code atual continuará funcionando normalmente.
+    // Caso queira adicionar interatividade extra (ex.: animações ao scroll ou efeitos hover adicionais), pode incluir aqui.
+    // O QR code continuará funcionando pois a URL permanece a mesma.
   </script>
 </body>
 </html>
